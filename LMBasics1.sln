@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMB.BAL", "LMB.BAL\LMB.BAL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMB.Web", "LMB.Web\LMB.Web.csproj", "{9CAB1C0F-EB5A-4F1B-8501-2C0E6401F396}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMB.TestingApp", "LMB.TestingApp\LMB.TestingApp.csproj", "{566C44B6-96A4-4C53-8255-1EF04982EDAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9CAB1C0F-EB5A-4F1B-8501-2C0E6401F396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CAB1C0F-EB5A-4F1B-8501-2C0E6401F396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CAB1C0F-EB5A-4F1B-8501-2C0E6401F396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{566C44B6-96A4-4C53-8255-1EF04982EDAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{566C44B6-96A4-4C53-8255-1EF04982EDAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{566C44B6-96A4-4C53-8255-1EF04982EDAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{566C44B6-96A4-4C53-8255-1EF04982EDAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

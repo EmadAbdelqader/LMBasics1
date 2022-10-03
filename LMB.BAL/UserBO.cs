@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace LMB.BAL
 
         public List<User> GetUsers()
         {
-            // SELECT * FROM Users
+            // SELECT * FROM Users WHERE IsDeleted = False
             return dc.Users.ToList();
         }
 
@@ -40,6 +41,19 @@ namespace LMB.BAL
             // TODO
             return new List<User>();
         }
+
+        // Write a method that search for user based on the first name column 
+        public List<User> GetUserSea(string firstName)
+        {
+            //return dc.Users.Where(u => u.FirstName == firstName).ToList();
+
+            var Query = from u in dc.Users
+                        where u.UserId == 3
+                        select u;
+
+            return Query.ToList();
+        }
+
 
         #endregion
 
@@ -66,7 +80,10 @@ namespace LMB.BAL
 
             // AutMapper -> Manual
             _user.FirstName = user.FirstName;
-            _user.LastName = user.LastName;
+
+            // Check for null if the coming lastName from the UI is null
+            if (user.LastName != null)
+                _user.LastName = user.LastName;
             _user.Username = user.Username;
             _user.IsDeleted = user.IsDeleted;
 
@@ -94,6 +111,17 @@ namespace LMB.BAL
             dc.SubmitChanges();
         }
 
+        public void FakeDelete(int userId)
+        {
+            var delUser = dc.Users.Where(u => u.UserId == userId).FirstOrDefault();
+
+            if (delUser == null) return;
+
+            delUser.IsDeleted = true;
+            
+            dc.SubmitChanges();
+        }
+
         #endregion
     }
 }
@@ -107,3 +135,4 @@ namespace LMB.BAL
 // SingleOfDefault
 // OrderBy
 // Join
+// Aggregate Functions, Max(), Min(), dc.Users.Where(u=> u.FirstName == "Sobhi").Average(c=> c.Salary)
