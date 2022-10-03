@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LMDB" Class="LMDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=LMDB;Integrated Security=True" SettingsObjectName="LMB.DAL.Properties.Settings" SettingsPropertyName="LMDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
+      <Column Name="ReportsTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="NVarChar(13)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UserLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_LeaveApplication" Member="LeaveApplications" ThisKey="UserId" OtherKey="UserId" Type="LeaveApplication" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LeaveApplications" Member="LeaveApplications">
+    <Type Name="LeaveApplication">
+      <Column Name="AppId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FromDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ToDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TotalDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Requester" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Reason" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Stage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_LeaveApplication" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LookUps" Member="LookUps">
+    <Type Name="LookUp">
+      <Column Name="LookUpId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupDescription" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CanDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LookUpType_LookUp" Member="LookUpType" ThisKey="TypeId" OtherKey="TypeId" Type="LookUpType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LookUpTypes" Member="LookUpTypes">
+    <Type Name="LookUpType">
+      <Column Name="TypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ShowInMaster" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LookUpType_LookUp" Member="LookUps" ThisKey="TypeId" OtherKey="TypeId" Type="LookUp" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Events" Member="Events">
+    <Type Name="Event">
+      <Column Name="EventId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OwnerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Priority" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssignedTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Module" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FollowUpDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FollowUpTime" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
